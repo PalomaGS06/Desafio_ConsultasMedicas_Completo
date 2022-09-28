@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,10 @@ namespace ConsultaMedicaVet
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore); 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ConsultaMedicaVet", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { 
+                    Title = "Desafio de Consultas Médicas Agendadas Completo", 
+                    Version = "v1" 
+                });
 
 
                 // Adicionar configurações extras da documentação, para ler os XMLs
@@ -48,9 +52,30 @@ namespace ConsultaMedicaVet
 
             });
 
-     
+
+            // Configuração do JWT para autenticação de token
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = "JwtBearer";
+                options.DefaultChallengeScheme = "JwtBearer";
+            })
+            .AddJwtBearer("JwtBearer", options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Api-consultas-key")),
+                    ClockSkew = TimeSpan.FromMinutes(30),
+                    ValidIssuer = "consultasMedicas.webAPI",
+                    ValidAudience = "consultasMedicas.webAPI"
+                };
+            });
+
 
             // Adiciona-se as injeções de dependência
+            // Add Transient - é criado uma nova instância sempre que necessário
             services.AddTransient<ConsultaMedVetContext, ConsultaMedVetContext>();
             services.AddTransient<IEspecialidadeRepository, EspecialidadeRepository>();
             services.AddTransient<IConsultaRepository, ConsultaRepository>();
@@ -80,6 +105,8 @@ namespace ConsultaMedicaVet
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
