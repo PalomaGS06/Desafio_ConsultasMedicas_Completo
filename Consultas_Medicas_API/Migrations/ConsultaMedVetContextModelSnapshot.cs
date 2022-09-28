@@ -19,6 +19,30 @@ namespace ConsultaMedicaVet.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ConsultaMedicaVet.Models.Administrador", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                b.Property<string>("TipoAcesso")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("CPF")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(11)");
+
+                b.Property<int>("IdUsuario")
+                    .HasColumnType("int");
+
+                b.HasKey("Id");
+
+                b.HasIndex("IdUsuario");
+
+                b.ToTable("Administrador");
+            });
+
             modelBuilder.Entity("ConsultaMedicaVet.Models.Consulta", b =>
                 {
                     b.Property<int>("Id")
@@ -173,6 +197,17 @@ namespace ConsultaMedicaVet.Migrations
 
                     b.Navigation("Paciente");
                 });
+
+            modelBuilder.Entity("ConsultaMedicaVet.Models.Administrador", b =>
+            {
+                b.HasOne("ConsultaMedicaVet.Models.Usuario", "Usuario")
+                    .WithMany()
+                    .HasForeignKey("IdUsuario")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.Navigation("Usuario");
+            });
 
             modelBuilder.Entity("ConsultaMedicaVet.Models.Medico", b =>
                 {

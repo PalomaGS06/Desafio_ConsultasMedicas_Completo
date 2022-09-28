@@ -56,6 +56,28 @@ namespace ConsultaMedicaVet.Migrations
                 });
 
             migrationBuilder.CreateTable(
+               name: "Administrador",
+               columns: table => new
+               {
+                   Id = table.Column<int>(type: "int", nullable: false)
+                       .Annotation("SqlServer:Identity", "1, 1"),
+                   TipoAcesso = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                   CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),                   
+                   IdUsuario = table.Column<int>(type: "int", nullable: false)
+               },
+               constraints: table =>
+               {
+                   table.PrimaryKey("PK_Administrador", x => x.Id);
+                   table.ForeignKey(
+                       name: "FK_Administrador_Usuarios_IdUsuario",
+                       column: x => x.IdUsuario,
+                       principalTable: "Usuarios",
+                       principalColumn: "Id",
+                       onDelete: ReferentialAction.NoAction);
+               });
+
+
+            migrationBuilder.CreateTable(
                 name: "Medico",
                 columns: table => new
                 {
@@ -147,6 +169,11 @@ namespace ConsultaMedicaVet.Migrations
                 column: "IdEspecialidade");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Administrador_IdUsuario",
+                table: "Administrador",
+                column: "IdUsuario");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Medico_IdUsuario",
                 table: "Medico",
                 column: "IdUsuario");
@@ -166,6 +193,9 @@ namespace ConsultaMedicaVet.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Consultas");
+
+            migrationBuilder.DropTable(
+               name: "Administrador");
 
             migrationBuilder.DropTable(
                 name: "Medico");
