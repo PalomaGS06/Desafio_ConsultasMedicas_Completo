@@ -1,4 +1,5 @@
 ﻿using APIConsultasMedicas.Interfaces;
+using APIConsultasMedicas.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,18 +10,18 @@ namespace APIConsultasMedicas.Controllers
     public class LoginController : ControllerBase
     {
 
-        private readonly ILoginRepository repo;
+        private readonly ILoginRepository _loginRepository;
 
-        public LoginController(ILoginRepository _loginRepository)
+        public LoginController(ILoginRepository loginRepository)
         {
-            repo = _loginRepository;
+            _loginRepository = loginRepository;
         }
 
 
         [HttpPost]
-        public IActionResult Logar(string email, string senha)
+        public IActionResult Logar(Login login)
         {
-            var logar = repo.Logar(email, senha);
+            var logar = _loginRepository.Logar(login);
             if (logar == null)
                 return Unauthorized();
 

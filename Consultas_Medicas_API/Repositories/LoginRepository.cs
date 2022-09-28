@@ -15,7 +15,7 @@ namespace APIConsultasMedicas.Repositories
             _context = ctx ;
         }
 
-        public string Logar(Logar login)
+        public string Logar(Login login)
         {
             var usuario = _context.Usuarios
                  .Where(u => u.Email == login.Email)

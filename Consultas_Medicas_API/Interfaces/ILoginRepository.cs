@@ -4,6 +4,6 @@ namespace APIConsultasMedicas.Interfaces
 {
     public interface ILoginRepository
     {
-        string Logar (Logar  login);
+        string Logar (Login  login);
     }
 }

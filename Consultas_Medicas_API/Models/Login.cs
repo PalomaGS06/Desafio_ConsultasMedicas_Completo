@@ -2,7 +2,7 @@
 
 namespace APIConsultasMedicas.Models
 {
-    public class Logar
+    public class Login
     {
         // Classe referente a autenticação para gerar o Json e fazer o login do usuário
 
