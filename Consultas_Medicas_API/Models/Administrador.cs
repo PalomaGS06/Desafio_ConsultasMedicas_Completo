@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APIConsultasMedicas.Models
 {
-    // Classe referente aos desenvolvedores da API, sendo usuários com autorização de acesso
+    // Classe referente aos desenvolvedores da API, sendo usuários administradores com autorização de acesso
     public class Administrador
     {
         [Key]  // primary key 
