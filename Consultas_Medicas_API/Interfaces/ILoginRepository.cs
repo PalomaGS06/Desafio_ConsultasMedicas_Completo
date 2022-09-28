@@ -1,7 +1,9 @@
-﻿namespace APIConsultasMedicas.Interfaces
+﻿using APIConsultasMedicas.Models;
+
+namespace APIConsultasMedicas.Interfaces
 {
     public interface ILoginRepository
     {
-        string Logar(string email, string senha);
+        string Logar (Logar  login);
     }
 }

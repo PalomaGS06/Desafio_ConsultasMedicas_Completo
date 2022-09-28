@@ -24,7 +24,10 @@ namespace APIConsultasMedicas.Controllers
             if (logar == null)
                 return Unauthorized();
 
-            return Ok(new { token = logar });
+            return Ok (new
+            { 
+                token = logar
+            });
         }
     }
 }
