@@ -47,13 +47,13 @@ namespace APIConsultasMedicas.Repositories
                 // Credenciais criadas
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                // Token gerado atraves das informações passadas na configuração do JWT
+                // Token gerado através das informações passadas na configuração do JWT
                 var myToken = new JwtSecurityToken(
                     issuer: "consultasMedicas.webAPI",  // local da emissão do token
                     audience: "consultasMedicas.webAPI",
                     claims: myClaims,
                     expires: DateTime.Now.AddMinutes(30), // tempo de expiração do token
-                    signingCredentials: creds
+                    signingCredentials: creds // assinatura das credenciais
                     );
 
                 return new JwtSecurityTokenHandler().WriteToken(myToken);

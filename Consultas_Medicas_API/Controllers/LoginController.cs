@@ -23,7 +23,9 @@ namespace APIConsultasMedicas.Controllers
         {
             var logar = _loginRepository.Logar(login);
             if (logar == null)
-                return Unauthorized();
+                return Unauthorized(new {
+                    msg = "Usuário não permitido! Por favor, verifique novamente seus dados." 
+                });
 
             return Ok (new
             { 
