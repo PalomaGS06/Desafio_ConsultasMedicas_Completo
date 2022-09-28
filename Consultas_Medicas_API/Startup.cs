@@ -80,6 +80,7 @@ namespace ConsultaMedicaVet
             services.AddTransient<IEspecialidadeRepository, EspecialidadeRepository>();
             services.AddTransient<IConsultaRepository, ConsultaRepository>();
             services.AddTransient<ILoginRepository, LoginRepository>();
+            services.AddTransient<IAdministradorRepository, AdministradorRepository>();
             services.AddTransient<IMedicoRepository, MedicoRepository>();
             services.AddTransient<IPacienteRepository, PacienteRepository>();
             services.AddTransient<ITipoUsuarioRepository, TipoUsuarioRepository>();
