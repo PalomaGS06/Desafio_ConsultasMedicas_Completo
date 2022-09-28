@@ -35,7 +35,7 @@ namespace APIConsultasMedicas.Repositories
                 var myClaims = new[]
                 {
                         new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
-                        new Claim(ClaimTypes.Role, "Paciente"),
+                        new Claim(ClaimTypes.Role, usuario.TipoUsuario.Tipo), // Inclui qual o tipo de usuario (administrador, no caso) que possui autorização de acessos 
 
                         new Claim("Cargo", usuario.TipoUsuario.Tipo) // indica qual o cargo (tipo) de usuário
 

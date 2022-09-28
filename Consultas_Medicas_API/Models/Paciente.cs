@@ -7,7 +7,7 @@ namespace ConsultaMedicaVet.Models
 {
     public class Paciente
     {
-        // Na classe Model, haverá todos os atributos/colunas que compõe a classe Consulta
+        // Na classe Model, haverá todos os atributos/colunas que compõe a classe Paciente
 
         [Key]  // primary key 
         public int Id { get; set; }
