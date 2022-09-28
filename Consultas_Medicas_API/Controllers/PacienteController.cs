@@ -31,6 +31,7 @@ namespace ConsultaMedicaVet.Controllers
 
             try
             {
+                paciente.Usuario.Senha = BCrypt.Net.BCrypt.HashPassword(paciente.Usuario.Senha);
                 paciente.Usuario.IdTipoUsuario = 2;  // O paciente sempre será com o Id 2, não importando qual valor o usuario digitar
                 var retorno = repositorio.Inserir(paciente);
                 return Ok(retorno);
@@ -128,7 +129,7 @@ namespace ConsultaMedicaVet.Controllers
                 {
                     return BadRequest();
                 }
-
+                               
                 //Verificar se o id existe no banco!
                 var retorno = repositorio.BuscarPorId(id);
                 if (retorno == null)
@@ -139,10 +140,17 @@ namespace ConsultaMedicaVet.Controllers
                     });
                 }
 
+                paciente.Usuario.Senha = BCrypt.Net.BCrypt.HashPassword(paciente.Usuario.Senha);
                 //Altera efetivamente o paciente!
                 repositorio.Alterar(paciente);
 
-                return NoContent();  //retorna o código 404 de sucesso que será exibido
+                return Ok(new
+                {
+                    msg = "Paciente alterado com sucesso!", //mensagem de sucesso
+                    paciente
+                });
+
+                // return NoContent();  //retorna o código 404 de sucesso que será exibido
 
             }
             catch (System.Exception e)
@@ -183,7 +191,12 @@ namespace ConsultaMedicaVet.Controllers
             }
 
             repositorio.AlterarParcialmente(patchPaciente, paciente);
-            return Ok(paciente);
+
+            return Ok(new
+            {
+                msg = "Paciente alterado com sucesso!", //mensagem de sucesso
+                paciente
+            });
         }
 
         //verbo DELETE - Excluir

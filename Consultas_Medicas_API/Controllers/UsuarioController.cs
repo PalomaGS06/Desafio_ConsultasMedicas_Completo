@@ -18,35 +18,6 @@ namespace ConsultaMedicaVet.Controllers
             repositorio = _repositorio;
         }
 
-        //verbo POST - Inserir/Cadastrar
-
-        /// <summary>
-        /// Cadastra/Inclui usuarios e seus respectivos Ids
-        /// </summary>
-        /// <param name="usuario"> Dados dos Usuários</param>
-        /// <returns>Usuário cadastrado!</returns>
-        [HttpPost]
-        public IActionResult Cadastrar(Usuario usuario)
-        {
-
-            try
-            {
-                var retorno = repositorio.Inserir(usuario);
-                return Ok(retorno);
-
-            }
-            catch (System.Exception e)
-            {
-                // return BadRequest(e.Message);            
-                return StatusCode(500, new
-                {
-                    Error = "Falha na transação !!",  // mensagem de erro
-                    Message = e.Message,
-                });
-            }
-
-        }
-
         //verbo GET - Buscar/Listar
 
         /// <summary>
@@ -192,17 +163,23 @@ namespace ConsultaMedicaVet.Controllers
                     });
                 }
 
+
+                usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
                 //Altera efetivamente o usuário!
                 repositorio.Alterar(usuario);
 
-                return NoContent();
+                return Ok (new 
+                { 
+                    msg = "Usuário alterado com sucesso!", //mensagem de sucesso
+                    usuario 
+                });
 
             }
             catch (System.Exception e)
             {
                 return StatusCode(500, new
                 {
-                    Error = "Falha na transação !!",      // mensagem de erro
+                    Error = "Falha na alteração !!",      // mensagem de erro
                     Message = e.Message,
                 });
             }
@@ -237,7 +214,12 @@ namespace ConsultaMedicaVet.Controllers
             }
 
             repositorio.AlterarParcialmente(patchUsuario, usuario);
-            return Ok(usuario);
+
+            return Ok(new
+            {
+                msg = "Usuário alterado com sucesso!", //mensagem de sucesso
+                usuario
+            });
         }
 
         //verbo DELETE - Excluir

@@ -31,6 +31,7 @@ namespace ConsultaMedicaVet.Controllers
 
             try
             {
+                medico.Usuario.Senha = BCrypt.Net.BCrypt.HashPassword(medico.Usuario.Senha);
                 medico.Usuario.IdTipoUsuario = 1;   // O médico sempre será com o Id 1, não importando qual valor o usuario digitar
                 var retorno = repositorio.Inserir(medico);
                 return Ok(retorno);
@@ -141,10 +142,15 @@ namespace ConsultaMedicaVet.Controllers
                     });
                 }
 
+                medico.Usuario.Senha = BCrypt.Net.BCrypt.HashPassword(medico.Usuario.Senha);
                 //Altera efetivamente o médico!
                 repositorio.Alterar(medico);
 
-                return NoContent();    // caso contrário, o código 404 de sucesso será exibido
+                return Ok(new
+                {
+                    msg = "Médico alterado com sucesso!", //mensagem de sucesso
+                    medico
+                });
 
             }
             catch (System.Exception e)
@@ -185,7 +191,12 @@ namespace ConsultaMedicaVet.Controllers
             }
 
             repositorio.AlterarParcialmente(patchMedico, medico);
-            return Ok(medico);   // retorna o medico alterado
+
+            return Ok(new       // retorna o medico alterado
+            {
+                msg = "Médico alterado com sucesso!", //mensagem de sucesso
+                medico
+            }); 
         }
 
         //verbo DELETE - Excluir
