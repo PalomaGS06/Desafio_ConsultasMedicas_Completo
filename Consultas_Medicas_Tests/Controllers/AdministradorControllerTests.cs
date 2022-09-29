@@ -3,6 +3,11 @@ using APIConsultasMedicas.Interfaces;
 using ConsultaMedicaVet.Models;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Consultas_Medicas_Tests.Controllers
@@ -13,7 +18,7 @@ namespace Consultas_Medicas_Tests.Controllers
         private readonly Mock<IAdministradorRepository> _mock; // A função Mock cria um repositório "fake" para usá-lo no controller
         private readonly AdministradorController _ctl;
 
-        public AdministradorControllerTests()
+        public AdministradorControllerTests()   // Gerando um método construtor
         {
             _mock = new Mock<IAdministradorRepository>();
             _ctl = new AdministradorController(_mock.Object);

@@ -9,12 +9,14 @@ INSERT INTO TipoUsuario(Tipo) VALUES ('Médico');
 INSERT INTO TipoUsuario(Tipo) VALUES ('Paciente');
 GO
 		-- Dados dos Usuários
-INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Hagrid', 'hagrid@email.com', '123456', 1);
-INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Snape', 'snape@email.com', '678910', 1);
-INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Minerva', 'minerva@email.com', '1102938', 1);
-INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Harry', 'harry@email.com', '147258', 2);
-INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Hermione', 'hermione@email.com', '9876543', 2);
-INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Rony', 'rony@email.com', '6549873', 2);
+INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Hagrid', 'hagrid@email.com', '123456', 1);  -- Medico
+INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Snape', 'snape@email.com', '678910', 1);    -- Medico
+INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Minerva', 'minerva@email.com', '1102938', 1); -- Medico
+INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Harry', 'harry@email.com', '147258', 2);   -- Paciente
+INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Hermione', 'hermione@email.com', '9876543', 2);  -- Paciente
+INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Rony', 'rony@email.com', '6549873', 2);  -- Paciente
+INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Dumbledore', 'director@email.com', '54656465', 4);  -- Administrador
+
 GO
 	
 		-- Dados da Especialidade 
