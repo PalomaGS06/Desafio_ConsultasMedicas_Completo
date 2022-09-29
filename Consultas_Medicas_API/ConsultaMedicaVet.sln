@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsultaMedicaVet", "ConsultaMedicaVet.csproj", "{DB93ECE5-956E-463F-97F3-4702061A417C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consultas_Medicas_Tests", "..\Consultas_Medicas_Test\Consultas_Medicas_Tests.csproj", "{03CF1D43-5027-4F2D-A9DF-A3B729F2FDEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consultas_Medicas_Tests", "..\Consultas_Medicas_Tests\Consultas_Medicas_Tests.csproj", "{F9CC6974-346C-46C3-9A80-8A5D2CFC448B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{DB93ECE5-956E-463F-97F3-4702061A417C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB93ECE5-956E-463F-97F3-4702061A417C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB93ECE5-956E-463F-97F3-4702061A417C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{03CF1D43-5027-4F2D-A9DF-A3B729F2FDEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03CF1D43-5027-4F2D-A9DF-A3B729F2FDEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{03CF1D43-5027-4F2D-A9DF-A3B729F2FDEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{03CF1D43-5027-4F2D-A9DF-A3B729F2FDEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9CC6974-346C-46C3-9A80-8A5D2CFC448B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9CC6974-346C-46C3-9A80-8A5D2CFC448B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9CC6974-346C-46C3-9A80-8A5D2CFC448B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9CC6974-346C-46C3-9A80-8A5D2CFC448B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
