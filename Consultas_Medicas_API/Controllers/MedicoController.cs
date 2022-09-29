@@ -1,5 +1,6 @@
 ﻿using ConsultaMedicaVet.Interfaces;
 using ConsultaMedicaVet.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,7 @@ namespace ConsultaMedicaVet.Controllers
         /// </summary>
         /// <param name="medico"> Dados dos Médicos</param>
         /// <returns>Médico cadastrado!</returns>
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         public IActionResult Cadastrar(Medico medico)
         {
@@ -54,6 +56,7 @@ namespace ConsultaMedicaVet.Controllers
         /// Lista/Busca todos os médicos existentes no BD
         /// </summary>
         /// <returns>Lista de Médicos com consultas</returns>
+        [Authorize(Roles = "Administrador")]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -82,6 +85,7 @@ namespace ConsultaMedicaVet.Controllers
         /// </summary>
         /// <param name="id">Dados do médico selecionado</param>
         /// <returns>Médico listado pelo ID</returns>
+        [Authorize(Roles = "Administrador")]
         [HttpGet("{id}")]
         public IActionResult BuscarMedicoPorID(int id)
         {
@@ -117,6 +121,7 @@ namespace ConsultaMedicaVet.Controllers
         /// <param name="id">Id do médico </param>
         /// <param name="medico">Dados do médico alterado</param>
         /// <returns>Médico alterado</returns>
+        [Authorize(Roles = "Administrador")]
         [HttpPut("{id}")]
         public IActionResult Alterar(int id, Medico medico)
         {
@@ -172,6 +177,7 @@ namespace ConsultaMedicaVet.Controllers
         /// <param name="id">Id selecionado para alteração</param>
         /// <param name="patchMedico">Dado alterado</param>
         /// <returns>Médico alterado</returns>
+        [Authorize(Roles = "Administrador")]
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, [FromBody] JsonPatchDocument patchMedico)
         {
@@ -206,6 +212,7 @@ namespace ConsultaMedicaVet.Controllers
         /// </summary>
         /// <param name="id">Id selecionado para exclusão</param>
         /// <returns>Mensagem de exclusão</returns>
+        [Authorize(Roles = "Administrador")]
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id)
         {

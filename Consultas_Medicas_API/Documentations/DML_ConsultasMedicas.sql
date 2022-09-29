@@ -25,6 +25,10 @@ INSERT INTO Especialidade(Categoria) VALUES ('Cardiologista'),
 											('Otorrinolaringologista');
 GO
 
+		-- Dados do Administrador
+INSERT INTO Administrador(TipoAcesso, CPF, IdUsuario) VALUES ('Admin', '12345678912', 8)											
+		
+GO
 
 		-- Dados do Médico
 INSERT INTO Medico(CRM, IdEspecialidade, IdUsuario) VALUES ('651466213', 1, 3),
