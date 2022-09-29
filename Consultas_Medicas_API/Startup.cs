@@ -44,6 +44,7 @@ namespace ConsultaMedicaVet
                     Version = "v1" 
                 });
 
+                // Criação do botão 'Authorize' no Swagger, para colar o token no Bearer e verificá-lo
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Name = "Authorization",
