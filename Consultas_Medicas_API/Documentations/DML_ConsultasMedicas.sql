@@ -7,6 +7,7 @@ GO
 		-- Tipos de Usuários existentes
 INSERT INTO TipoUsuario(Tipo) VALUES ('Médico');
 INSERT INTO TipoUsuario(Tipo) VALUES ('Paciente');
+INSERT INTO TipoUsuario(Tipo) VALUES ('Administrador');
 GO
 		-- Dados dos Usuários
 INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Hagrid', 'hagrid@email.com', '123456', 1);  -- Medico
@@ -15,7 +16,8 @@ INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Minerva', 'mine
 INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Harry', 'harry@email.com', '147258', 2);   -- Paciente
 INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Hermione', 'hermione@email.com', '9876543', 2);  -- Paciente
 INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Rony', 'rony@email.com', '6549873', 2);  -- Paciente
-INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Dumbledore', 'director@email.com', '54656465', 4);  -- Administrador
+INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Malfoy', 'malfoy@email.com', '6549873', 2);  -- Paciente
+INSERT INTO Usuarios(Nome, Email, Senha, IdTipoUsuario) VALUES ('Dumbledore', 'director@email.com', '54656465', 3);  -- Administrador
 
 GO
 	
@@ -42,6 +44,7 @@ GO
 INSERT INTO Paciente(Carteirinha, DataNascimento, Ativo, IdUsuario) VALUES ('684656356', '1980-05-08T12:50:36', 1, 4 );
 INSERT INTO Paciente(Carteirinha, DataNascimento, Ativo, IdUsuario) VALUES ('91452641561', '1983-02-23T05:14:01', 1, 5 );
 INSERT INTO Paciente(Carteirinha, DataNascimento, Ativo, IdUsuario) VALUES ('46514951209', '1985-05-1T10:03:52', 1, 6 );
+INSERT INTO Paciente(Carteirinha, DataNascimento, Ativo, IdUsuario) VALUES ('1645142194', '1995-04-1T12:00:00', 1, 7 );
 GO
 
 	

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ConsultaMedicaVet.Migrations
+namespace APIConsultasMedicas.Migrations
 {
     public partial class DBInicial : Migration
     {
@@ -39,9 +39,9 @@ namespace ConsultaMedicaVet.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IdTipoUsuario = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -56,26 +56,25 @@ namespace ConsultaMedicaVet.Migrations
                 });
 
             migrationBuilder.CreateTable(
-               name: "Administrador",
-               columns: table => new
-               {
-                   Id = table.Column<int>(type: "int", nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
-                   TipoAcesso = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                   CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),                   
-                   IdUsuario = table.Column<int>(type: "int", nullable: false)
-               },
-               constraints: table =>
-               {
-                   table.PrimaryKey("PK_Administrador", x => x.Id);
-                   table.ForeignKey(
-                       name: "FK_Administrador_Usuarios_IdUsuario",
-                       column: x => x.IdUsuario,
-                       principalTable: "Usuarios",
-                       principalColumn: "Id",
-                       onDelete: ReferentialAction.NoAction);
-               });
-
+                name: "Administrador",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TipoAcesso = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdUsuario = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Administrador", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Administrador_Usuarios_IdUsuario",
+                        column: x => x.IdUsuario,
+                        principalTable: "Usuarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Medico",
@@ -154,6 +153,11 @@ namespace ConsultaMedicaVet.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Administrador_IdUsuario",
+                table: "Administrador",
+                column: "IdUsuario");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Consultas_IdMedico",
                 table: "Consultas",
                 column: "IdMedico");
@@ -167,11 +171,6 @@ namespace ConsultaMedicaVet.Migrations
                 name: "IX_Medico_IdEspecialidade",
                 table: "Medico",
                 column: "IdEspecialidade");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Administrador_IdUsuario",
-                table: "Administrador",
-                column: "IdUsuario");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Medico_IdUsuario",
@@ -192,10 +191,10 @@ namespace ConsultaMedicaVet.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Consultas");
+                name: "Administrador");
 
             migrationBuilder.DropTable(
-               name: "Administrador");
+                name: "Consultas");
 
             migrationBuilder.DropTable(
                 name: "Medico");

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ConsultaMedicaVet.Migrations
+namespace APIConsultasMedicas.Migrations
 {
     [DbContext(typeof(ConsultaMedVetContext))]
     partial class ConsultaMedVetContextModelSnapshot : ModelSnapshot
@@ -19,29 +19,29 @@ namespace ConsultaMedicaVet.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ConsultaMedicaVet.Models.Administrador", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+            modelBuilder.Entity("APIConsultasMedicas.Models.Administrador", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                b.Property<string>("TipoAcesso")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("CPF")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("CPF")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(11)");
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("int");
 
-                b.Property<int>("IdUsuario")
-                    .HasColumnType("int");
+                    b.Property<string>("TipoAcesso")
+                        .HasColumnType("nvarchar(max)");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("IdUsuario");
+                    b.HasIndex("IdUsuario");
 
-                b.ToTable("Administrador");
-            });
+                    b.ToTable("Administrador");
+                });
 
             modelBuilder.Entity("ConsultaMedicaVet.Models.Consulta", b =>
                 {
@@ -161,15 +161,18 @@ namespace ConsultaMedicaVet.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("IdTipoUsuario")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Senha")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -179,16 +182,27 @@ namespace ConsultaMedicaVet.Migrations
                     b.ToTable("Usuarios");
                 });
 
+            modelBuilder.Entity("APIConsultasMedicas.Models.Administrador", b =>
+                {
+                    b.HasOne("ConsultaMedicaVet.Models.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("ConsultaMedicaVet.Models.Consulta", b =>
                 {
                     b.HasOne("ConsultaMedicaVet.Models.Medico", "Medico")
-                        .WithMany()
+                        .WithMany("Consulta")
                         .HasForeignKey("IdMedico")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ConsultaMedicaVet.Models.Paciente", "Paciente")
-                        .WithMany()
+                        .WithMany("Consulta")
                         .HasForeignKey("IdPaciente")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -198,27 +212,16 @@ namespace ConsultaMedicaVet.Migrations
                     b.Navigation("Paciente");
                 });
 
-            modelBuilder.Entity("ConsultaMedicaVet.Models.Administrador", b =>
-            {
-                b.HasOne("ConsultaMedicaVet.Models.Usuario", "Usuario")
-                    .WithMany()
-                    .HasForeignKey("IdUsuario")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-
-                b.Navigation("Usuario");
-            });
-
             modelBuilder.Entity("ConsultaMedicaVet.Models.Medico", b =>
                 {
                     b.HasOne("ConsultaMedicaVet.Models.Especialidade", "Especialidade")
-                        .WithMany()
+                        .WithMany("Medico")
                         .HasForeignKey("IdEspecialidade")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ConsultaMedicaVet.Models.Usuario", "Usuario")
-                        .WithMany()
+                        .WithMany("Medico")
                         .HasForeignKey("IdUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -231,7 +234,7 @@ namespace ConsultaMedicaVet.Migrations
             modelBuilder.Entity("ConsultaMedicaVet.Models.Paciente", b =>
                 {
                     b.HasOne("ConsultaMedicaVet.Models.Usuario", "Usuario")
-                        .WithMany()
+                        .WithMany("Paciente")
                         .HasForeignKey("IdUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -248,6 +251,28 @@ namespace ConsultaMedicaVet.Migrations
                         .IsRequired();
 
                     b.Navigation("TipoUsuario");
+                });
+
+            modelBuilder.Entity("ConsultaMedicaVet.Models.Especialidade", b =>
+                {
+                    b.Navigation("Medico");
+                });
+
+            modelBuilder.Entity("ConsultaMedicaVet.Models.Medico", b =>
+                {
+                    b.Navigation("Consulta");
+                });
+
+            modelBuilder.Entity("ConsultaMedicaVet.Models.Paciente", b =>
+                {
+                    b.Navigation("Consulta");
+                });
+
+            modelBuilder.Entity("ConsultaMedicaVet.Models.Usuario", b =>
+                {
+                    b.Navigation("Medico");
+
+                    b.Navigation("Paciente");
                 });
 #pragma warning restore 612, 618
         }
