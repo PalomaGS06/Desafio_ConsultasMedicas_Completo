@@ -44,6 +44,32 @@ namespace ConsultaMedicaVet
                     Version = "v1" 
                 });
 
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = @"Enviar o token para autenticação com o formato de exemplo 'Bearer abcd1234'",
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
+                            Scheme = "oauth2",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
+                        },
+                        new string[] {}
+                    }
+                });
 
                 // Adicionar configurações extras da documentação, para ler os XMLs
                 //Combinar informações, gerando o Assembly
