@@ -40,7 +40,7 @@ namespace ConsultaMedicaVet.Controllers
 
             try
             {
-                paciente.Usuario.Senha = BCrypt.Net.BCrypt.HashPassword(paciente.Usuario.Senha);
+                paciente.Usuario.Senha = BCrypt.Net.BCrypt.HashPassword(paciente.Usuario.Senha); // Salva e cadastra a senha criptografada
                 paciente.Usuario.IdTipoUsuario = 2;  // O paciente sempre será com o Id 2, não importando qual valor o usuario digitar
                 var retorno = repositorio.Inserir(paciente);
                 return Ok(retorno);
@@ -157,7 +157,7 @@ namespace ConsultaMedicaVet.Controllers
                     });
                 }
 
-                paciente.Usuario.Senha = BCrypt.Net.BCrypt.HashPassword(paciente.Usuario.Senha);
+                paciente.Usuario.Senha = BCrypt.Net.BCrypt.HashPassword(paciente.Usuario.Senha); // Salva e cadastra a senha criptografada
                 //Altera efetivamente o paciente!
                 repositorio.Alterar(paciente);
 

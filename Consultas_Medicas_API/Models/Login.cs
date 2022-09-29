@@ -5,6 +5,7 @@ namespace APIConsultasMedicas.Models
     public class Login
     {
         // Classe referente a autenticação para gerar o Json e fazer o login do usuário
+        // o Email e Senha são obrigatórios
 
         [Required(ErrorMessage = "Por favor, informar o e-mail do usuário!")]
         [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Por favor, inserir um e-mail válido")]

@@ -33,7 +33,7 @@ namespace APIConsultasMedicas.Controllers
 
             try
             {
-                admin.Usuario.Senha = BCrypt.Net.BCrypt.HashPassword(admin.Usuario.Senha);
+                admin.Usuario.Senha = BCrypt.Net.BCrypt.HashPassword(admin.Usuario.Senha); // Salva e cadastra a senha criptografada
                 admin.Usuario.IdTipoUsuario = 4;   // O médico sempre será com o Id 4, não importando qual valor o usuario digitar
                 var retorno = repositorio.Inserir(admin);
                 return Ok(retorno);
@@ -144,7 +144,7 @@ namespace APIConsultasMedicas.Controllers
                     });
                 }
 
-                admin.Usuario.Senha = BCrypt.Net.BCrypt.HashPassword(admin.Usuario.Senha);
+                admin.Usuario.Senha = BCrypt.Net.BCrypt.HashPassword(admin.Usuario.Senha); // Salva e cadastra a senha criptografada
                 //Altera efetivamente o admin!
                 repositorio.Alterar(admin);
 

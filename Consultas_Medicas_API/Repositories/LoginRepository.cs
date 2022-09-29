@@ -19,17 +19,17 @@ namespace APIConsultasMedicas.Repositories
             _context = ctx ;
         }
 
-        public string Logar(Login login)
+        public string Logar(Login login) 
         {
             var usuario = _context.Usuarios
                  .Where(u => u.Email == login.Email)
-                 .Include(t => t.TipoUsuario)
+                 .Include(t => t.TipoUsuario)  // O login inclui o ripo de usuário para ele identificar
                  .FirstOrDefault();
 
             if (usuario != null && login.Senha != null && usuario.Senha.Contains("$2b$")) // Condição para a validação da senha
             {
                 bool validada = BCrypt.Net.BCrypt.Verify(login.Senha, usuario.Senha); // Faz a verificação do que foi salvo. Método aplicado ao logar
-                                                                                      // Criar as credenciais do JWT
+                                                                                      // Cria as credenciais do JWT
 
                 // Realizando a definição da Claim
                 var myClaims = new[]

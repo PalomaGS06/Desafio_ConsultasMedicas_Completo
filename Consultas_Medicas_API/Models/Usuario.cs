@@ -11,8 +11,16 @@ namespace ConsultaMedicaVet.Models
 
         [Key]  // primary key/ chave primária
         public int Id { get; set; }
+
+        [Required]
         public string Nome { get; set; }
+
+        [Required]
+        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Insira um e-mail válido")]
         public string Email { get; set; }
+
+        [Required]
+        [MinLength(7, ErrorMessage = "A senha deverá ter no mínimo 7 dígitos!")]
         public string Senha { get; set; }
 
         [ForeignKey("TipoUsuario")]   // foreign key/ chave estrangeira IdTipoUsuario

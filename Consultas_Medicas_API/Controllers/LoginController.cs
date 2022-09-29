@@ -12,7 +12,7 @@ namespace APIConsultasMedicas.Controllers
 
         private readonly ILoginRepository _loginRepository;
 
-        public LoginController(ILoginRepository loginRepository)
+        public LoginController(ILoginRepository loginRepository) //Método construtor criado
         {
             _loginRepository = loginRepository;
         }
@@ -22,14 +22,14 @@ namespace APIConsultasMedicas.Controllers
         public IActionResult Logar(Login login)
         {
             var logar = _loginRepository.Logar(login);
-            if (logar == null)
+            if (logar == null)                              // Se a ação de logar/autenticar for igual à nulo, o retorno será da não permissão do usuário
                 return Unauthorized(new {
-                    msg = "Usuário não permitido! Por favor, verifique novamente seus dados." 
+                    msg = "Usuário não permitido! Por favor, verifique novamente seus dados."   
                 });
 
             return Ok (new
             { 
-                token = logar
+                token = logar  // returna com um título "token =" e o token criado
             });
         }
     }

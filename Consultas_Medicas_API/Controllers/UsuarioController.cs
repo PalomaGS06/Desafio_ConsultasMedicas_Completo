@@ -165,7 +165,7 @@ namespace ConsultaMedicaVet.Controllers
                 }
 
 
-                usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+                usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha); // Salva e cadastra a senha criptografada
                 //Altera efetivamente o usuário!
                 repositorio.Alterar(usuario);
 
