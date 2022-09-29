@@ -62,16 +62,8 @@ namespace ConsultaMedicaVet.Controllers
 
         /// <summary>
         /// Lista/Busca todos os pacientes existentes no BD
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// Acesso permitido:
-        ///
-        ///   * Usuários Administrador e Médico
-        ///       
-        /// </remarks>  
-        /// <returns>Lista de Pacientes com consultas</returns>
-        [Authorize(Roles = "Administrador, Médico")]
+        /// </summary>       
+        /// <returns>Lista de Pacientes com consultas</returns>       
         [HttpGet]
         public IActionResult Listar()
         {
@@ -97,17 +89,9 @@ namespace ConsultaMedicaVet.Controllers
 
         /// <summary>
         /// Lista o paciente por meio de seu Id
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// Acesso permitido:
-        ///
-        ///   * Usuários Administrador e Médico
-        ///       
-        /// </remarks> 
+        /// </summary>       
         /// <param name="id">Dados do paciente selecionado</param>
         /// <returns>Paciente listado pelo ID</returns>
-        [Authorize(Roles = "Administrador, Médico")]
         [HttpGet("{id}")]
         public IActionResult BuscarPacientePorID(int id)
         {

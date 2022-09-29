@@ -29,12 +29,12 @@ namespace ConsultaMedicaVet.Controllers
         /// 
         /// Acesso permitido:
         ///
-        ///   * Usuário Administrador
+        ///   * Usuários: Administrador e Médico
         ///       
         /// </remarks>
         /// <param name="medico"> Dados dos Médicos</param>
         /// <returns>Médico cadastrado!</returns>
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador, Médico")]
         [HttpPost]
         public IActionResult Cadastrar(Medico medico)
         {
@@ -67,11 +67,11 @@ namespace ConsultaMedicaVet.Controllers
         /// 
         /// Acesso permitido:
         ///
-        ///   * Usuário Administrador
+        ///   * Usuários: Administrador, Médico e Paciente
         ///       
         /// </remarks> 
         /// <returns>Lista de Médicos com consultas</returns>
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador, Médico, Paciente")]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -102,12 +102,12 @@ namespace ConsultaMedicaVet.Controllers
         /// 
         /// Acesso permitido:
         ///
-        ///   * Usuário Administrador
+        ///   * Usuários: Administrador, Médico e Paciente
         ///       
         /// </remarks> 
         /// <param name="id">Dados do médico selecionado</param>
         /// <returns>Médico listado pelo ID</returns>
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador, Médico, Paciente")]
         [HttpGet("{id}")]
         public IActionResult BuscarMedicoPorID(int id)
         {
