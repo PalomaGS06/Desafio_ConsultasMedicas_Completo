@@ -1,5 +1,6 @@
 ﻿using ConsultaMedicaVet.Interfaces;
 using ConsultaMedicaVet.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -24,8 +25,16 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Cadastra/Inclui consulta e seus respectivos Ids
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuários: Administrador, Médico e Paciente
+        ///       
+        /// </remarks>    
         /// <param name="consulta"> Dados das Consultas</param>
         /// <returns>Consulta cadastrada!</returns>
+        [Authorize(Roles = "Administrador, Medico, Paciente")]
         [HttpPost]
         public IActionResult Cadastrar(Consulta consulta)
         {
@@ -53,7 +62,15 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Lista/Busca todos as consultas existentes no BD
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuários: Administrador, Médico e Paciente
+        ///       
+        /// </remarks>    
         /// <returns>Lista de consultas</returns>
+        [Authorize(Roles = "Administrador, Medico, Paciente")]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -80,8 +97,16 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Lista a consulta por meio de seu Id
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuários: Administrador, Médico e Paciente
+        ///       
+        /// </remarks>    
         /// <param name="id">Dados da consulta selecionada</param>
         /// <returns>Consulta listada pelo ID</returns>
+        [Authorize(Roles = "Administrador, Medico, Paciente")]
         [HttpGet("{id}")]
         public IActionResult BuscarConsultaPorID(int id)  
         {
@@ -114,9 +139,17 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Altera os dados da consulta
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuários: Administrador e Médico 
+        ///       
+        /// </remarks>   
         /// <param name="id">Id da consulta </param>
         /// <param name="consulta">Dados da consulta alterada</param>
         /// <returns>Consulta alterada</returns>
+        [Authorize(Roles = "Administrador, Medico")]
         [HttpPut("{id}")]
         public IActionResult Alterar(int id, Consulta consulta)
         {
@@ -161,9 +194,17 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Altera alguns dos dados da consulta
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuários: Administrador e Médico
+        ///       
+        /// </remarks>    
         /// <param name="id">Id selecionado para alteração</param>
         /// <param name="patchConsulta">Dado alterado</param>
         /// <returns>Consulta alterada</returns>
+        [Authorize(Roles = "Administrador, Medico")]
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, [FromBody] JsonPatchDocument patchConsulta)
         {
@@ -192,8 +233,16 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Deletar consulta através de seu Id
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuários: Administrador e Médico 
+        ///       
+        /// </remarks>   
         /// <param name="id">Id selecionado para exclusão</param>
         /// <returns>Mensagem de exclusão</returns>
+        [Authorize(Roles = "Administrador, Medico")]
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id)
         {

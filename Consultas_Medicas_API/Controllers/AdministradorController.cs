@@ -1,11 +1,13 @@
 ﻿using APIConsultasMedicas.Interfaces;
 using APIConsultasMedicas.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIConsultasMedicas.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     [Route("api/[controller]")]
     [ApiController]
     public class AdministradorController : ControllerBase

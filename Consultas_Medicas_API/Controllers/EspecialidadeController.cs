@@ -1,5 +1,6 @@
 ﻿using ConsultaMedicaVet.Interfaces;
 using ConsultaMedicaVet.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -23,8 +24,16 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Cadastra/Inclui especialidades e seus respectivos Ids
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuários: Administrador, Médico e Paciente
+        ///       
+        /// </remarks>   
         /// <param name="especialidade"> Dados das Especialidades</param>
         /// <returns>Especialidade cadastrada!</returns>
+        [Authorize(Roles = "Administrador, Medico, Paciente")]
         [HttpPost]
         public IActionResult Cadastrar(Especialidade especialidade)
         {
@@ -52,7 +61,15 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Lista/Busca todos as especialidades existentes no BD
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuários: Administrador, Médico e Paciente
+        ///       
+        /// </remarks>    
         /// <returns>Lista de Especialidades </returns>
+        [Authorize(Roles = "Administrador, Medico, Paciente")]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -78,8 +95,16 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Lista a especialidade por meio de seu Id
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuários: Administrador, Médico e Paciente
+        ///       
+        /// </remarks>   
         /// <param name="id">Dados da especialidade selecionada</param>
         /// <returns>Especialidade listada pelo ID</returns>
+        [Authorize(Roles = "Administrador, Medico, Paciente")]
         [HttpGet("{id}")]
         public IActionResult BuscarEspecialidadePorID(int id)
         {
@@ -112,9 +137,17 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Altera os dados da especialidade
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuários: Administrador, Médico e Paciente
+        ///       
+        /// </remarks>   
         /// <param name="id">Id da especialidade </param>
         /// <param name="especialidade">Dados da especialidade alterada</param>
         /// <returns>Especialidade alterada</returns>
+        [Authorize(Roles = "Administrador, Medico, Paciente")]
         [HttpPut("{id}")]
         public IActionResult Alterar(int id, Especialidade especialidade)
         {
@@ -159,9 +192,17 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Altera alguns dos dados da especialidade
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuários: Administrador, Médico e Paciente
+        ///       
+        /// </remarks>   
         /// <param name="id">Id selecionado para alteração</param>
         /// <param name="patchEspecialidade">Dado alterado</param>
         /// <returns>Especialidade alterada</returns>
+        [Authorize(Roles = "Administrador, Medico, Paciente")]
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, [FromBody] JsonPatchDocument patchEspecialidade)
         {
@@ -189,8 +230,16 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Deletar especialidade através de seu Id
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuários: Administrador, Médico e Paciente
+        ///       
+        /// </remarks>    
         /// <param name="id">Id selecionado para exclusão</param>
         /// <returns>Mensagem de exclusão</returns>
+        [Authorize(Roles = "Administrador, Medico, Paciente")]
         [HttpDelete("{id}")]
         public IActionResult Excluir(int id)
         {

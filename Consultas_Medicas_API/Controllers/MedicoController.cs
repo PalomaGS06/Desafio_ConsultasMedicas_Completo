@@ -24,6 +24,14 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Cadastra/Inclui médicos e seus respectivos Ids
         /// </summary>
+        /// 
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuário Administrador
+        ///       
+        /// </remarks>
         /// <param name="medico"> Dados dos Médicos</param>
         /// <returns>Médico cadastrado!</returns>
         [Authorize(Roles = "Administrador")]
@@ -55,6 +63,13 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Lista/Busca todos os médicos existentes no BD
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuário Administrador
+        ///       
+        /// </remarks> 
         /// <returns>Lista de Médicos com consultas</returns>
         [Authorize(Roles = "Administrador")]
         [HttpGet]
@@ -83,6 +98,13 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Lista o médico por meio de seu Id
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuário Administrador
+        ///       
+        /// </remarks> 
         /// <param name="id">Dados do médico selecionado</param>
         /// <returns>Médico listado pelo ID</returns>
         [Authorize(Roles = "Administrador")]
@@ -118,6 +140,13 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Altera os dados do médico
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuário Administrador
+        ///       
+        /// </remarks> 
         /// <param name="id">Id do médico </param>
         /// <param name="medico">Dados do médico alterado</param>
         /// <returns>Médico alterado</returns>
@@ -174,6 +203,13 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Altera alguns dos dados do médico
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuário Administrador
+        ///       
+        /// </remarks> 
         /// <param name="id">Id selecionado para alteração</param>
         /// <param name="patchMedico">Dado alterado</param>
         /// <returns>Médico alterado</returns>
@@ -210,6 +246,13 @@ namespace ConsultaMedicaVet.Controllers
         /// <summary>
         /// Deletar médico através de seu Id
         /// </summary>
+        /// <remarks>
+        /// 
+        /// Acesso permitido:
+        ///
+        ///   * Usuário Administrador
+        ///       
+        /// </remarks> 
         /// <param name="id">Id selecionado para exclusão</param>
         /// <returns>Mensagem de exclusão</returns>
         [Authorize(Roles = "Administrador")]

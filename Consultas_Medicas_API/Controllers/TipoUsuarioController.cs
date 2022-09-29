@@ -1,11 +1,13 @@
 ﻿using ConsultaMedicaVet.Interfaces;
 using ConsultaMedicaVet.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConsultaMedicaVet.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     [Route("api/[controller]")]
     [ApiController]
     public class TipoUsuarioController : ControllerBase
