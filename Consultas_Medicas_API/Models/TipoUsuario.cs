@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ConsultaMedicaVet.Models
 {
@@ -8,6 +9,7 @@ namespace ConsultaMedicaVet.Models
 
         [Key]   // primary key 
         public int Id { get; set; }
+
         [Required]  // campo obrigatório
         public string Tipo { get; set; }
     }

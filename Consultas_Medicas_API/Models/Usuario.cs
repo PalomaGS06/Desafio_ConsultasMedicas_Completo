@@ -23,8 +23,11 @@ namespace ConsultaMedicaVet.Models
         [MinLength(7, ErrorMessage = "A senha deverá ter no mínimo 7 dígitos!")]
         public string Senha { get; set; }
 
+
         [ForeignKey("TipoUsuario")]   // foreign key/ chave estrangeira IdTipoUsuario
+        
         public int IdTipoUsuario { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public TipoUsuario TipoUsuario { get; set; }   // classe TipoUsuario como objeto
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]

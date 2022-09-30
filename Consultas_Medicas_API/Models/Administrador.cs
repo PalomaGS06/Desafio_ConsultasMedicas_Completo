@@ -1,6 +1,7 @@
 ﻿using ConsultaMedicaVet.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace APIConsultasMedicas.Models
 {
@@ -18,7 +19,7 @@ namespace APIConsultasMedicas.Models
 
 
         [ForeignKey("Usuario")]   // foreign key IdUsuario
-    public int IdUsuario { get; set; }
+         public int IdUsuario { get; set; }
     public Usuario Usuario { get; set; }  // classe Usuario como objeto
 
     }
